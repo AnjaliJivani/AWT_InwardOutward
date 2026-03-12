@@ -260,7 +260,7 @@ export default function AdminMaster() {
         const matchesFilter = activeFilter === "All" || user.role.RoleName.toLowerCase().replace(/\s+/g, '') === activeFilter.toLowerCase().replace(/\s+/g, '');
 
         // Hierarchy: Admins cannot see Super Admins
-        const loggedInRole = localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
+        const loggedInRole = typeof window !== "undefined" ? localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
         const targetRole = user.role.RoleName.toLowerCase().replace(/\s+/g, '');
 
         if (loggedInRole === 'admin' && targetRole === 'superadmin') {
@@ -343,7 +343,7 @@ export default function AdminMaster() {
             </header>
 
             <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-slate-100">
-                {(localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin'
+                {(typeof window !== "undefined" && localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin'
                     ? ["All", "Super Admin", "Admin", "Clerk"]
                     : ["All", "Admin", "Clerk"]
                 ).map(filter => (
@@ -571,7 +571,7 @@ export default function AdminMaster() {
                                                 {roles
                                                     .filter((role, index, self) => {
                                                         const normalizedName = role.RoleName.toLowerCase().replace(/\s+/g, '');
-                                                        const currentUserRole = localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
+                                                        const currentUserRole = typeof window !== "undefined" ? localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
 
                                                         // Deduplicate based on normalized name
                                                         const isFirst = self.findIndex(r => r.RoleName.toLowerCase().replace(/\s+/g, '') === normalizedName) === index;
@@ -592,7 +592,7 @@ export default function AdminMaster() {
                                         <div className="col-span-1">
                                             <div className="flex justify-between items-center mb-2">
                                                 <label className="block text-sm font-bold text-slate-700">Team</label>
-                                                {localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin' && (
+                                                {typeof window !== "undefined" && localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin' && (
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowTeamForm(true)}
