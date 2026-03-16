@@ -85,7 +85,7 @@ export default function AdminMaster() {
     };
 
     useEffect(() => {
-        const storedRole = localStorage.getItem("userRole");
+        const storedRole = globalThis.localStorage?.getItem("userRole");
         const userRole = storedRole?.toLowerCase().replace(/\s+/g, '');
         if (userRole !== "admin" && userRole !== "superadmin") {
             router.push("/dashboard");
@@ -97,7 +97,7 @@ export default function AdminMaster() {
                 const data = await res.json();
                 setRoles(data);
                 if (data.length > 0 && !formData.RoleID) {
-                    const currentUserRole = localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
+                    const currentUserRole = globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
                     const allowedRoles = data.filter((role: any) => {
                         const normalizedRole = role.RoleName.toLowerCase().replace(/\s+/g, '');
                         if (currentUserRole === 'admin') {
@@ -163,7 +163,7 @@ export default function AdminMaster() {
                 setEditingId(null);
                 fetchUsers();
                 window.dispatchEvent(new Event("profile-updated"));
-                const currentUserRole = localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
+                const currentUserRole = globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '');
                 const allowedRoles = roles.filter(role => {
                     const normalizedRole = role.RoleName.toLowerCase().replace(/\s+/g, '');
                     if (currentUserRole === 'admin') {
@@ -260,7 +260,7 @@ export default function AdminMaster() {
         const matchesFilter = activeFilter === "All" || user.role.RoleName.toLowerCase().replace(/\s+/g, '') === activeFilter.toLowerCase().replace(/\s+/g, '');
 
         // Hierarchy: Admins cannot see Super Admins
-        const loggedInRole = typeof window !== "undefined" ? localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
+        const loggedInRole = typeof window !== "undefined" ? globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
         const targetRole = user.role.RoleName.toLowerCase().replace(/\s+/g, '');
 
         if (loggedInRole === 'admin' && targetRole === 'superadmin') {
@@ -343,7 +343,7 @@ export default function AdminMaster() {
             </header>
 
             <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-slate-100">
-                {(typeof window !== "undefined" && localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin'
+                {(typeof window !== "undefined" && globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin'
                     ? ["All", "Super Admin", "Admin", "Clerk"]
                     : ["All", "Admin", "Clerk"]
                 ).map(filter => (
@@ -571,7 +571,7 @@ export default function AdminMaster() {
                                                 {roles
                                                     .filter((role, index, self) => {
                                                         const normalizedName = role.RoleName.toLowerCase().replace(/\s+/g, '');
-                                                        const currentUserRole = typeof window !== "undefined" ? localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
+                                                        const currentUserRole = typeof window !== "undefined" ? globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') : null;
 
                                                         // Deduplicate based on normalized name
                                                         const isFirst = self.findIndex(r => r.RoleName.toLowerCase().replace(/\s+/g, '') === normalizedName) === index;
@@ -592,7 +592,7 @@ export default function AdminMaster() {
                                         <div className="col-span-1">
                                             <div className="flex justify-between items-center mb-2">
                                                 <label className="block text-sm font-bold text-slate-700">Team</label>
-                                                {typeof window !== "undefined" && localStorage.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin' && (
+                                                {typeof window !== "undefined" && globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin' && (
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowTeamForm(true)}
