@@ -107,7 +107,7 @@ export default function InwardEntry() {
 
     useEffect(() => {
         fetchData();
-        const storedId = localStorage.getItem("userId");
+        const storedId = globalThis.localStorage?.getItem("userId");
         if (storedId) setUserId(parseInt(storedId));
     }, []);
 

@@ -67,7 +67,7 @@ export default function ProfilePage() {
                 }));
             } else if (res.status === 404) {
                 console.warn("User not found in DB, using local storage defaults");
-                const storedName = localStorage.getItem("userName");
+                const storedName = globalThis.localStorage?.getItem("userName");
                 setUser(prev => ({
                     ...prev,
                     name: storedName || email.split('@')[0],
@@ -179,8 +179,8 @@ export default function ProfilePage() {
     };
 
     useEffect(() => {
-        const storedRole = localStorage.getItem("userRole");
-        const storedEmail = localStorage.getItem("userEmail");
+        const storedRole = globalThis.localStorage?.getItem("userRole");
+        const storedEmail = globalThis.localStorage?.getItem("userEmail");
 
         if (!storedRole || !storedEmail) {
             router.push("/login");
@@ -188,7 +188,7 @@ export default function ProfilePage() {
         }
 
         const loadAllData = () => {
-            const latestEmail = localStorage.getItem("userEmail") || storedEmail;
+            const latestEmail = globalThis.localStorage?.getItem("userEmail") || storedEmail;
             fetchUserProfile(latestEmail);
             fetchStats(latestEmail);
         };
@@ -265,7 +265,7 @@ export default function ProfilePage() {
             const responseData = await res.json().catch(() => ({}));
 
             if (res.ok) {
-                localStorage.setItem("userEmail", editFormData.Email);
+                globalThis.localStorage?.setItem("userEmail", editFormData.Email);
                 setShowEditModal(false);
                 fetchUserProfile(editFormData.Email);
                 window.dispatchEvent(new Event("profile-updated"));

@@ -29,11 +29,11 @@ export default function LoginPage() {
             setCookie("token", token, { maxAge: 60 * 60 * 8 });
 
             // Store user info
-            localStorage.setItem("userRole", user.role);
-            localStorage.setItem("userName", user.name || user.username);
-            localStorage.setItem("userEmail", user.username); // API returns email as username field currently
-            localStorage.setItem("userId", user.id);
-            localStorage.setItem("teamId", user.teamId || "");
+            globalThis.localStorage?.setItem("userRole", user.role);
+            globalThis.localStorage?.setItem("userName", user.name || user.username);
+            globalThis.localStorage?.setItem("userEmail", user.username); // API returns email as username field currently
+            globalThis.localStorage?.setItem("userId", user.id);
+            globalThis.localStorage?.setItem("teamId", user.teamId || "");
 
             // Redirect
             router.push(redirectUrl);

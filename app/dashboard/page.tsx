@@ -73,8 +73,8 @@ export default function Dashboard() {
     };
 
     useEffect(() => {
-        setRole(localStorage.getItem("userRole"));
-        setUserName(localStorage.getItem("userName")?.split(" ")[0] || "User");
+        setRole(globalThis.localStorage?.getItem("userRole"));
+        setUserName(globalThis.localStorage?.getItem("userName")?.split(" ")[0] || "User");
         fetchDashboardData();
     }, []);
 

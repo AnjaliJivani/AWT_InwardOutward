@@ -51,7 +51,7 @@ export default function AuditLogsPage() {
     };
 
     useEffect(() => {
-        const role = localStorage.getItem("userRole");
+        const role = globalThis.localStorage?.getItem("userRole");
         const userRole = role?.toLowerCase().replace(/\s+/g, '');
         if (userRole === "clerk") {
             router.push("/dashboard");

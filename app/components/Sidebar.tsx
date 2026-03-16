@@ -47,9 +47,9 @@ export default function Sidebar() {
 
     // Initialize from localStorage immediately to prevent layout shift
     useEffect(() => {
-        const storedRole = localStorage.getItem("userRole");
-        const storedName = localStorage.getItem("userName");
-        const storedEmail = localStorage.getItem("userEmail");
+        const storedRole = globalThis.localStorage?.getItem("userRole");
+        const storedName = globalThis.localStorage?.getItem("userName");
+        const storedEmail = globalThis.localStorage?.getItem("userEmail");
 
         if (storedRole) setRole(storedRole.toLowerCase());
         if (storedName || storedEmail) {
@@ -83,15 +83,15 @@ export default function Sidebar() {
     };
 
     useEffect(() => {
-        const storedEmail = localStorage.getItem("userEmail");
+        const storedEmail = globalThis.localStorage?.getItem("userEmail");
         if (storedEmail) {
             fetchUserProfile(storedEmail);
         }
 
         // Listen for profile updates from other components
         const handleProfileUpdate = () => {
-            const latestEmail = localStorage.getItem("userEmail");
-            const latestRole = localStorage.getItem("userRole");
+            const latestEmail = globalThis.localStorage?.getItem("userEmail");
+            const latestRole = globalThis.localStorage?.getItem("userRole");
             if (latestRole) setRole(latestRole.toLowerCase());
             if (latestEmail) fetchUserProfile(latestEmail);
         };
@@ -101,7 +101,7 @@ export default function Sidebar() {
     }, []); // Only run once on mount
 
     const handleLogout = () => {
-        localStorage.clear();
+        globalThis.localStorage?.clear();
         deleteCookie("token");
         router.push("/login");
     };

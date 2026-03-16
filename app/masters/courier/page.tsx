@@ -85,8 +85,8 @@ export default function CourierMaster() {
     const [userId, setUserId] = useState<number | null>(null);
 
     useEffect(() => {
-        const role = localStorage.getItem("userRole");
-        const storedId = localStorage.getItem("userId");
+        const role = globalThis.localStorage?.getItem("userRole");
+        const storedId = globalThis.localStorage?.getItem("userId");
         if (storedId) setUserId(parseInt(storedId));
 
         const userRole = role?.toLowerCase().replace(/\s+/g, '');
