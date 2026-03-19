@@ -65,13 +65,13 @@ export default function AllTransactionsPage() {
                 <div>
                     <button
                         onClick={() => router.back()}
-                        className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors mb-4 group"
+                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-4 group"
                     >
                         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
                         <span className="text-xs font-bold uppercase tracking-widest">Back to Dashboard</span>
                     </button>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">All Transactions</h1>
-                    <p className="text-slate-500 mt-2 font-medium">History of all inward and outward courier movements.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">All Transactions</h1>
+                    <p className="text-slate-400 mt-2 font-medium">History of all inward and outward courier movements.</p>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -80,7 +80,7 @@ export default function AllTransactionsPage() {
                         <input
                             type="text"
                             placeholder="Search by subject, number or sender..."
-                            className="pastel-input py-3.5 pl-12 w-full md:w-80 shadow-sm"
+                            className="neon-input py-3.5 pl-12 w-full md:w-80 shadow-sm"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -88,14 +88,14 @@ export default function AllTransactionsPage() {
                 </div>
             </header>
 
-            <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-slate-100">
+            <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-white/10">
                 {["All", "Inward", "Outward"].map(filter => (
                     <button
                         key={filter}
                         onClick={() => setActiveFilter(filter)}
                         className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeFilter === filter
-                                ? "bg-white text-slate-900 shadow-md ring-1 ring-slate-200"
-                                : "text-slate-500 hover:text-slate-900"
+                                ? "bg-slate-900/40 backdrop-blur-sm text-white shadow-md ring-1 ring-slate-200"
+                                : "text-slate-400 hover:text-white"
                             }`}
                     >
                         {filter}
@@ -103,11 +103,11 @@ export default function AllTransactionsPage() {
                 ))}
             </div>
 
-            <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50/50 border-b border-[var(--border)]">
+                            <tr className="bg-white/5 border-b border-white/10">
                                 <th className="px-8 py-5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Type</th>
                                 <th className="px-8 py-5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">No.</th>
                                 <th className="px-8 py-5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Subject</th>
@@ -134,29 +134,29 @@ export default function AllTransactionsPage() {
                                     </td>
                                 </tr>
                             ) : filteredTransactions.map((item) => (
-                                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors group">
+                                <tr key={item.id} className="hover:bg-white/5 transition-colors group">
                                     <td className="px-8 py-5">
                                         <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase ${item.type === "Inward"
-                                                ? "bg-blue-50 text-blue-600"
-                                                : "bg-orange-50 text-orange-600"
+                                                ? "bg-cyan-500/20 text-cyan-400"
+                                                : "bg-violet-500/20 text-violet-400"
                                             }`}>
                                             {item.type === "Inward" ? <Inbox size={12} /> : <Send size={12} />}
                                             {item.type}
                                         </div>
                                     </td>
-                                    <td className="px-8 py-5 font-mono text-xs font-bold text-slate-500">#{item.no}</td>
+                                    <td className="px-8 py-5 font-mono text-xs font-bold text-slate-400">#{item.no}</td>
                                     <td className="px-8 py-5">
-                                        <div className="text-sm font-bold text-slate-900 line-clamp-1">{item.subject}</div>
+                                        <div className="text-sm font-bold text-white line-clamp-1">{item.subject}</div>
                                     </td>
-                                    <td className="px-8 py-5 text-sm font-medium text-slate-600">{item.senderReceiver}</td>
+                                    <td className="px-8 py-5 text-sm font-medium text-slate-300">{item.senderReceiver}</td>
                                     <td className="px-8 py-5">
-                                        <div className="flex items-center gap-2 text-slate-500 font-medium text-sm">
+                                        <div className="flex items-center gap-2 text-slate-400 font-medium text-sm">
                                             <Calendar size={14} className="text-slate-300" />
                                             {formatDate(item.date)}
                                         </div>
                                     </td>
                                     <td className="px-8 py-5 text-right">
-                                        <button className="p-2.5 rounded-xl hover:bg-slate-100 transition-colors text-slate-400 hover:text-slate-900">
+                                        <button className="p-2.5 rounded-xl hover:bg-slate-100 transition-colors text-slate-400 hover:text-white">
                                             <ChevronRight size={18} />
                                         </button>
                                     </td>
@@ -165,7 +165,7 @@ export default function AllTransactionsPage() {
                         </tbody>
                     </table>
                 </div>
-                <div className="p-8 bg-slate-50/30 border-t border-slate-100 flex justify-between items-center mt-auto">
+                <div className="p-8 bg-white/[0.02] border-t border-white/10 flex justify-between items-center mt-auto">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                         Showing {filteredTransactions.length} of {transactions.length} Transactions
                     </p>

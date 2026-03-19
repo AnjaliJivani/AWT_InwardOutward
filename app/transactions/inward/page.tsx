@@ -270,15 +270,15 @@ export default function InwardEntry() {
                         <Inbox size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest">Transactions</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Inward Entry</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Register incoming documents, parcels, and correspondence.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">Inward Entry</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Register incoming documents, parcels, and correspondence.</p>
                 </div>
                 <div className="flex gap-3">
                     {!isSelectionMode ? (
                         <>
                             <button
                                 onClick={handleReload}
-                                className={`p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600 ${isRefreshing ? 'text-blue-600 border-blue-100 bg-blue-50/50' : ''}`}
+                                className={`p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 ${isRefreshing ? 'text-cyan-400 border-cyan-500/30 text-cyan-100 bg-cyan-500/10' : ''}`}
                                 disabled={loading || isRefreshing}
                                 title="Refresh Data"
                             >
@@ -286,14 +286,14 @@ export default function InwardEntry() {
                             </button>
                             <button
                                 onClick={handleExport}
-                                className="p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600"
+                                className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300"
                                 title="Export to Excel"
                             >
                                 <Download size={20} />
                             </button>
                             <button
                                 onClick={() => setIsSelectionMode(true)}
-                                className="p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600 group"
+                                className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 group"
                                 title="Bulk Delete Mode"
                             >
                                 <Trash2 size={20} className="group-hover:text-rose-500 transition-colors" />
@@ -315,7 +315,7 @@ export default function InwardEntry() {
                                     });
                                     setShowForm(true);
                                 }}
-                                className="pastel-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5"
+                                className="glow-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5"
                             >
                                 <Plus size={20} />
                                 New Inward
@@ -328,7 +328,7 @@ export default function InwardEntry() {
                                     setIsSelectionMode(false);
                                     setSelectedIds([]);
                                 }}
-                                className="px-6 py-3.5 border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all flex items-center gap-2"
+                                className="px-6 py-3.5 border border-white/10 rounded-2xl font-bold text-slate-300 hover:bg-white/5 transition-all flex items-center gap-2"
                             >
                                 <X size={20} />
                                 Exit Selection
@@ -347,15 +347,15 @@ export default function InwardEntry() {
             </header>
 
             {/* Main Table view of recent Inwards */}
-            <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                <div className="p-8 border-b border-slate-50 bg-slate-50/20 flex items-center justify-between">
-                    <h2 className="text-xl font-bold text-slate-900">Recent Receipts</h2>
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                <div className="p-8 border-b border-white/5 bg-white/5/20 flex items-center justify-between">
+                    <h2 className="text-xl font-bold text-white">Recent Receipts</h2>
                     <div className="relative">
                         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input
                             type="text"
                             placeholder="Search inward logs..."
-                            className="pastel-input py-2.5 pl-12 text-sm w-72 bg-white"
+                            className="neon-input py-2.5 pl-12 text-sm w-72 bg-slate-900/40 backdrop-blur-sm"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -365,12 +365,12 @@ export default function InwardEntry() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50/50">
+                            <tr className="bg-white/5">
                                 {isSelectionMode && (
                                     <th className="px-8 py-5 text-xs text-center w-12">
                                         <input
                                             type="checkbox"
-                                            className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                            className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                             checked={filteredEntries.length > 0 && selectedIds.length === filteredEntries.length}
                                             onChange={handleSelectAll}
                                         />
@@ -398,42 +398,42 @@ export default function InwardEntry() {
                             ) : filteredEntries.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="p-20 text-center">
-                                        <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
                                             <FileText size={32} className="text-slate-200" />
                                         </div>
                                         <p className="text-lg font-bold text-slate-400">No inward records found</p>
                                     </td>
                                 </tr>
                             ) : filteredEntries.map((entry) => (
-                                <tr key={entry.InwardID} className={`hover:bg-slate-50/30 transition-colors group ${selectedIds.includes(entry.InwardID) ? 'bg-blue-50/30' : ''}`}>
+                                <tr key={entry.InwardID} className={`hover:bg-white/[0.02] transition-colors group ${selectedIds.includes(entry.InwardID) ? 'bg-cyan-500/20/30' : ''}`}>
                                     {isSelectionMode && (
                                         <td className="px-8 py-6 text-center">
                                             <input
                                                 type="checkbox"
-                                                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                                className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                                 checked={selectedIds.includes(entry.InwardID)}
                                                 onChange={() => handleSelectRow(entry.InwardID)}
                                             />
                                         </td>
                                     )}
-                                    <td className="px-8 py-6 text-center font-bold text-slate-900">{entry.InwardNo}</td>
-                                    <td className="px-8 py-6 text-sm text-slate-500 font-medium">
+                                    <td className="px-8 py-6 text-center font-bold text-white">{entry.InwardNo}</td>
+                                    <td className="px-8 py-6 text-sm text-slate-400 font-medium">
                                         {new Date(entry.InwardDate).toLocaleDateString()}
                                     </td>
                                     <td className="px-8 py-6">
-                                        <p className="font-bold text-slate-800">{entry.Subject}</p>
+                                        <p className="font-bold text-white">{entry.Subject}</p>
                                         <p className="text-xs text-slate-400 truncate max-w-xs">{entry.Description}</p>
                                     </td>
                                     <td className="px-8 py-6">
                                         <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                                            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
                                                 <Truck size={14} />
                                             </div>
-                                            <span className="text-sm font-medium text-slate-600">{entry.CourierCompanyName || "Direct"}</span>
+                                            <span className="text-sm font-medium text-slate-300">{entry.CourierCompanyName || "Direct"}</span>
                                         </div>
                                     </td>
                                     <td className="px-8 py-6">
-                                        <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-md">
+                                        <span className="text-xs font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-md">
                                             {entry.InwardLetterNo}
                                         </span>
                                     </td>
@@ -441,13 +441,13 @@ export default function InwardEntry() {
                                         <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <button
                                                 onClick={() => handleEdit(entry)}
-                                                className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-white rounded-xl transition-all border border-transparent hover:border-slate-100 shadow-sm"
+                                                className="p-2.5 text-slate-400 hover:text-white hover:bg-slate-900/40 backdrop-blur-sm rounded-xl transition-all border border-transparent hover:border-white/10 shadow-sm"
                                             >
                                                 <Edit2 size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(entry.InwardID, entry.InwardNo)}
-                                                className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all border border-transparent hover:border-rose-100 shadow-sm"
+                                                className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-500/20 rounded-xl transition-all border border-transparent hover:border-rose-500/30 shadow-sm"
                                             >
                                                 <Trash2 size={16} />
                                             </button>
@@ -463,12 +463,12 @@ export default function InwardEntry() {
             {/* Modern Slide-over or Modal for Form */}
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-end bg-slate-900/10 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="h-full w-full max-w-4xl bg-white shadow-2xl animate-in slide-in-from-right duration-500 overflow-y-auto">
-                        <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md p-8 border-b border-slate-100 flex justify-between items-center">
+                    <div className="h-full w-full max-w-4xl bg-slate-900/40 backdrop-blur-sm shadow-2xl animate-in slide-in-from-right duration-500 overflow-y-auto">
+                        <div className="sticky top-0 z-20 bg-slate-900/40 backdrop-blur-sm/80 backdrop-blur-md p-8 border-b border-white/10 flex justify-between items-center">
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900">{editingId ? "Edit Inward Log" : "New Inward Registration"}</h2>
+                                <h2 className="text-2xl font-bold text-white">{editingId ? "Edit Inward Log" : "New Inward Registration"}</h2>
                                 <div className="flex items-center gap-4 mt-1">
-                                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    <span className="text-xs font-bold text-cyan-400 bg-cyan-500/20 px-2 py-0.5 rounded-md uppercase tracking-wider">
                                         {editingId ? `Editing Log: ${formData.InwardNo}` : "Auto-ID: INW/2026/001"}
                                     </span>
                                 </div>
@@ -478,7 +478,7 @@ export default function InwardEntry() {
                                     setShowForm(false);
                                     setEditingId(null);
                                 }}
-                                className="w-12 h-12 rounded-full flex items-center justify-center hover:bg-slate-50 text-slate-400 transition-all border border-transparent hover:border-slate-100"
+                                className="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 text-slate-400 transition-all border border-transparent hover:border-white/10"
                             >
                                 <X size={24} />
                             </button>
@@ -493,9 +493,9 @@ export default function InwardEntry() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-8">
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Source (From)</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Source (From)</label>
                                         <select
-                                            className="pastel-input py-3"
+                                            className="neon-input py-3"
                                             value={formData.InOutwardFromToID}
                                             onChange={(e) => setFormData({ ...formData, InOutwardFromToID: e.target.value })}
                                         >
@@ -508,10 +508,10 @@ export default function InwardEntry() {
                                         </select>
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Inward Number</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Inward Number</label>
                                         <input
                                             type="text"
-                                            className="pastel-input"
+                                            className="neon-input"
                                             placeholder="e.g. 2024/001"
                                             value={formData.InwardNo}
                                             onChange={(e) => setFormData({ ...formData, InwardNo: e.target.value })}
@@ -519,19 +519,19 @@ export default function InwardEntry() {
                                         />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Received Date</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Received Date</label>
                                         <input
                                             type="date"
-                                            className="pastel-input"
+                                            className="neon-input"
                                             value={formData.InwardDate}
                                             onChange={(e) => setFormData({ ...formData, InwardDate: e.target.value })}
                                             required
                                         />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">To Office</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">To Office</label>
                                         <select
-                                            className="pastel-input py-3"
+                                            className="neon-input py-3"
                                             value={formData.ToInwardOutwardOfficeID}
                                             onChange={(e) => setFormData({ ...formData, ToInwardOutwardOfficeID: e.target.value })}
                                             required
@@ -545,9 +545,9 @@ export default function InwardEntry() {
                                         </select>
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Mode of Transfer</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Mode of Transfer</label>
                                         <select
-                                            className="pastel-input py-3"
+                                            className="neon-input py-3"
                                             value={formData.InOutwardModeID}
                                             onChange={(e) => setFormData({ ...formData, InOutwardModeID: e.target.value })}
                                         >
@@ -560,9 +560,9 @@ export default function InwardEntry() {
                                         </select>
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Courier Company</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Courier Company</label>
                                         <select
-                                            className="pastel-input py-3"
+                                            className="neon-input py-3"
                                             value={formData.CourierCompanyName}
                                             onChange={(e) => setFormData({ ...formData, CourierCompanyName: e.target.value })}
                                         >
@@ -584,10 +584,10 @@ export default function InwardEntry() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-8">
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Subject</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Subject</label>
                                         <input
                                             type="text"
-                                            className="pastel-input"
+                                            className="neon-input"
                                             placeholder="What is this document about?"
                                             value={formData.Subject}
                                             onChange={(e) => setFormData({ ...formData, Subject: e.target.value })}
@@ -595,29 +595,29 @@ export default function InwardEntry() {
                                         />
                                     </div>
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Description / Remarks</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Description / Remarks</label>
                                         <textarea
-                                            className="pastel-input min-h-[80px]"
+                                            className="neon-input min-h-[80px]"
                                             placeholder="Additional details..."
                                             value={formData.Description}
                                             onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
                                         ></textarea>
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Reference Letter No.</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Reference Letter No.</label>
                                         <input
                                             type="text"
-                                            className="pastel-input"
+                                            className="neon-input"
                                             placeholder="e.g. LTR/55/2024"
                                             value={formData.InwardLetterNo}
                                             onChange={(e) => setFormData({ ...formData, InwardLetterNo: e.target.value })}
                                         />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Letter Date</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Letter Date</label>
                                         <input
                                             type="date"
-                                            className="pastel-input"
+                                            className="neon-input"
                                             value={formData.InwardLetterDate}
                                             onChange={(e) => setFormData({ ...formData, InwardLetterDate: e.target.value })}
                                         />
@@ -625,14 +625,14 @@ export default function InwardEntry() {
                                 </div>
                             </div>
 
-                            <div className="sticky bottom-0 bg-white/80 backdrop-blur-md pt-8 pb-12 border-t border-slate-50 flex gap-4">
+                            <div className="sticky bottom-0 bg-slate-900/40 backdrop-blur-sm/80 backdrop-blur-md pt-8 pb-12 border-t border-white/5 flex gap-4">
                                 <button
                                     type="button"
                                     onClick={() => {
                                         setShowForm(false);
                                         setEditingId(null);
                                     }}
-                                    className="flex-1 py-4.5 rounded-2xl border border-[var(--border)] font-bold text-slate-600 hover:bg-slate-50 transition-all active:scale-95"
+                                    className="flex-1 py-4.5 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all active:scale-95"
                                 >
                                     Discard
                                 </button>
@@ -653,21 +653,21 @@ export default function InwardEntry() {
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 rounded-3xl bg-rose-50 flex items-center justify-center text-rose-500 mb-6">
+                            <div className="w-20 h-20 rounded-3xl bg-rose-500/20 flex items-center justify-center text-rose-500 mb-6">
                                 <AlertTriangle size={40} />
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                            <h2 className="text-2xl font-bold text-white mb-2">
                                 {Array.isArray(deletingItem?.id) ? "Delete Multiple Entries?" : "Delete Inward Entry?"}
                             </h2>
-                            <p className="text-slate-500 mb-8 leading-relaxed">
-                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-slate-900">"{deletingItem?.name}"</span> from your records?
+                            <p className="text-slate-400 mb-8 leading-relaxed">
+                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-white">"{deletingItem?.name}"</span> from your records?
                             </p>
                             <div className="flex w-full gap-4">
                                 <button
                                     onClick={cancelDelete}
-                                    className="flex-1 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>

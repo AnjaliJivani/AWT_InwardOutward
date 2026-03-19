@@ -215,8 +215,8 @@ export default function CourierMaster() {
                         <Truck size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest">Master Directory</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Courier Master</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Manage your shipping partners and delivery rates.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">Courier Master</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Manage your shipping partners and delivery rates.</p>
                 </div>
                 <div className="flex gap-3">
                     {!isSelectionMode ? (
@@ -226,7 +226,7 @@ export default function CourierMaster() {
                                 <input
                                     type="text"
                                     placeholder="Search partners..."
-                                    className="pastel-input py-3 pl-12 text-sm w-64 bg-white border-slate-200"
+                                    className="neon-input py-3 pl-12 text-sm w-64 bg-slate-900/40 backdrop-blur-sm border-white/10"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
@@ -234,21 +234,21 @@ export default function CourierMaster() {
                             <button
                                 onClick={handleReload}
                                 disabled={loading || isRefreshing}
-                                className={`p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all text-slate-600 ${isRefreshing ? 'text-blue-600 border-blue-100 bg-blue-50/50' : ''}`}
+                                className={`p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 ${isRefreshing ? 'text-cyan-400 border-cyan-500/30 text-cyan-100 bg-cyan-500/10' : ''}`}
                                 title="Reload Data"
                             >
                                 <History size={20} className={isRefreshing ? 'animate-spin' : ''} />
                             </button>
                             <button
                                 onClick={() => setIsSelectionMode(true)}
-                                className="p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all text-slate-600 group"
+                                className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 group"
                                 title="Bulk Delete Mode"
                             >
                                 <Trash2 size={20} className="group-hover:text-rose-500 transition-colors" />
                             </button>
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="pastel-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
+                                className="glow-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
                             >
                                 <Plus size={20} />
                                 Add Courier
@@ -261,7 +261,7 @@ export default function CourierMaster() {
                                     setIsSelectionMode(false);
                                     setSelectedIds([]);
                                 }}
-                                className="px-6 py-3.5 border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all flex items-center gap-2"
+                                className="px-6 py-3.5 border border-white/10 rounded-2xl font-bold text-slate-300 hover:bg-white/5 transition-all flex items-center gap-2"
                             >
                                 <X size={20} />
                                 Exit Selection
@@ -286,13 +286,13 @@ export default function CourierMaster() {
                     </div>
                 ) : filteredCompanies.length === 0 ? (
                     <div className="col-span-full p-20 text-center">
-                        <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Truck size={40} className="text-slate-200" />
                         </div>
                         <p className="text-xl font-bold text-slate-400">
                             {searchTerm ? `No partners matching "${searchTerm}"` : "No courier partners found"}
                         </p>
-                        <button onClick={() => setShowForm(true)} className="text-sm font-bold text-slate-900 mt-2 hover:underline">Add your first partner</button>
+                        <button onClick={() => setShowForm(true)} className="text-sm font-bold text-white mt-2 hover:underline">Add your first partner</button>
                     </div>
                 ) : (
                     <>
@@ -300,20 +300,20 @@ export default function CourierMaster() {
                             <div
                                 key={company.CourierCompanyID}
                                 onClick={() => isSelectionMode && handleSelectRow(company.CourierCompanyID)}
-                                className={`pastel-card hover:translate-y-[-4px] group relative cursor-pointer transition-all ${selectedIds.includes(company.CourierCompanyID) ? 'border-blue-300 ring-2 ring-blue-100 bg-blue-50/10' : ''}`}
+                                className={`glass-card hover:translate-y-[-4px] group relative cursor-pointer transition-all ${selectedIds.includes(company.CourierCompanyID) ? 'border-blue-300 ring-2 ring-blue-100 bg-cyan-500/20/10' : ''}`}
                             >
                                 {isSelectionMode && (
                                     <div className="absolute top-6 left-6 z-10">
                                         <input
                                             type="checkbox"
-                                            className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                            className="w-5 h-5 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                             checked={selectedIds.includes(company.CourierCompanyID)}
                                             readOnly
                                         />
                                     </div>
                                 )}
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className={`w-14 h-14 rounded-2xl bg-[var(--primary)] text-slate-700 flex items-center justify-center shadow-sm ${isSelectionMode ? 'ml-10' : ''}`}>
+                                    <div className={`w-14 h-14 rounded-2xl bg-[var(--primary)] text-slate-200 flex items-center justify-center shadow-sm ${isSelectionMode ? 'ml-10' : ''}`}>
                                         <Truck size={28} />
                                     </div>
                                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -321,13 +321,13 @@ export default function CourierMaster() {
                                             <>
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); handleEdit(company); }}
-                                                    className="p-2.5 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-white transition-all border border-transparent hover:border-slate-100 shadow-sm"
+                                                    className="p-2.5 text-slate-400 hover:text-white rounded-xl hover:bg-slate-900/40 backdrop-blur-sm transition-all border border-transparent hover:border-white/10 shadow-sm"
                                                 >
                                                     <Edit2 size={16} />
                                                 </button>
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); handleDelete(company.CourierCompanyID, company.CourierCompanyName); }}
-                                                    className="p-2.5 text-slate-400 hover:text-rose-600 rounded-xl hover:bg-rose-50 transition-all border border-transparent hover:border-rose-100 shadow-sm"
+                                                    className="p-2.5 text-slate-400 hover:text-rose-600 rounded-xl hover:bg-rose-500/20 transition-all border border-transparent hover:border-rose-500/30 shadow-sm"
                                                 >
                                                     <Trash2 size={16} />
                                                 </button>
@@ -336,18 +336,18 @@ export default function CourierMaster() {
                                     </div>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-slate-900 mb-1">{company.CourierCompanyName}</h3>
-                                <div className="flex items-center gap-2 text-sm text-slate-500 font-medium mb-6">
+                                <h3 className="text-xl font-bold text-white mb-1">{company.CourierCompanyName}</h3>
+                                <div className="flex items-center gap-2 text-sm text-slate-400 font-medium mb-6">
                                     <User size={14} className="text-slate-400" />
                                     {company.ContactPersonName}
                                 </div>
 
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-3 text-sm text-slate-600 font-medium font-bold">
+                                    <div className="flex items-center gap-3 text-sm text-slate-300 font-medium font-bold">
                                         <Phone size={14} className="text-slate-400" />
                                         {company.PhoneNo || "N/A"}
                                     </div>
-                                    <div className="flex items-center gap-3 text-sm text-slate-600 font-medium">
+                                    <div className="flex items-center gap-3 text-sm text-slate-300 font-medium">
                                         <Mail size={14} className="text-slate-400" />
                                         <span className="truncate">{company.Email || "N/A"}</span>
                                     </div>
@@ -357,9 +357,9 @@ export default function CourierMaster() {
                                     </div>
                                 </div>
 
-                                <div className="mt-8 pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between">
                                     <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Base Rate</span>
-                                    <span className="text-lg font-bold text-slate-900 bg-slate-50 px-3 py-1 rounded-xl">₹{company.DefaultRate}</span>
+                                    <span className="text-lg font-bold text-white bg-white/5 px-3 py-1 rounded-xl">₹{company.DefaultRate}</span>
                                 </div>
                             </div>
                         ))}
@@ -367,7 +367,7 @@ export default function CourierMaster() {
                         {!isSelectionMode && (
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="pastel-card border-dashed border-2 flex flex-col items-center justify-center gap-4 text-slate-400 hover:text-slate-600 hover:border-slate-300 hover:bg-slate-50/50 transition-all min-h-[300px]"
+                                className="glass-card border-dashed border-2 flex flex-col items-center justify-center gap-4 text-slate-400 hover:text-slate-300 hover:border-slate-300 hover:bg-white/5 transition-all min-h-[300px]"
                             >
                                 <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
                                     <Plus size={24} />
@@ -381,10 +381,10 @@ export default function CourierMaster() {
 
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/10 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-2xl rounded-[2.5rem] border border-[var(--border)] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-                        <div className="p-8 border-b border-slate-50 bg-slate-50/30 flex justify-between items-center">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-2xl rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+                        <div className="p-8 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+                                <h2 className="text-2xl font-bold text-white tracking-tight">
                                     {editingId ? "Update Courier Partner" : "Configure Courier"}
                                 </h2>
                                 <p className="text-[var(--primary-foreground)]/60 text-sm font-medium mt-1">
@@ -393,7 +393,7 @@ export default function CourierMaster() {
                             </div>
                             <button
                                 onClick={closeForm}
-                                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/50 text-slate-400 hover:text-slate-900 transition-all text-2xl"
+                                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-900/40 backdrop-blur-sm/50 text-slate-400 hover:text-white transition-all text-2xl"
                             >
                                 &times;
                             </button>
@@ -402,10 +402,10 @@ export default function CourierMaster() {
                         <form onSubmit={handleSubmit} className="p-10 space-y-8">
                             <div className="grid grid-cols-2 gap-x-8 gap-y-6">
                                 <div className="col-span-2">
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Company Name</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Company Name</label>
                                     <input
                                         type="text"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="e.g. Blue Dart"
                                         value={formData.CourierCompanyName}
                                         onChange={(e) => setFormData({ ...formData, CourierCompanyName: e.target.value })}
@@ -413,10 +413,10 @@ export default function CourierMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Contact Person</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Contact Person</label>
                                     <input
                                         type="text"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="Name"
                                         value={formData.ContactPersonName}
                                         onChange={(e) => setFormData({ ...formData, ContactPersonName: e.target.value })}
@@ -424,10 +424,10 @@ export default function CourierMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Base Rate (₹)</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Base Rate (₹)</label>
                                     <input
                                         type="number"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="0.00"
                                         value={formData.DefaultRate}
                                         onChange={(e) => setFormData({ ...formData, DefaultRate: e.target.value })}
@@ -435,10 +435,10 @@ export default function CourierMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Phone Number</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Phone Number</label>
                                     <input
                                         type="tel"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="10-digit number"
                                         value={formData.PhoneNo}
                                         onChange={(e) => setFormData({ ...formData, PhoneNo: e.target.value.replace(/\D/g, '') })}
@@ -448,19 +448,19 @@ export default function CourierMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Email Address</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Email Address</label>
                                     <input
                                         type="email"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="contact@company.com"
                                         value={formData.Email}
                                         onChange={(e) => setFormData({ ...formData, Email: e.target.value })}
                                     />
                                 </div>
                                 <div className="col-span-2">
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Full Address</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Full Address</label>
                                     <textarea
-                                        className="pastel-input min-h-[80px]"
+                                        className="neon-input min-h-[80px]"
                                         placeholder="Office address..."
                                         value={formData.Address}
                                         onChange={(e) => setFormData({ ...formData, Address: e.target.value })}
@@ -469,7 +469,7 @@ export default function CourierMaster() {
                             </div>
 
                             <div className="flex gap-4 pt-4">
-                                <button type="button" onClick={closeForm} className="flex-1 py-4 rounded-2xl border border-[var(--border)] font-bold text-slate-600 hover:bg-slate-50 transition-all">Cancel</button>
+                                <button type="button" onClick={closeForm} className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all">Cancel</button>
                                 <button
                                     type="submit"
                                     disabled={submitting}
@@ -486,21 +486,21 @@ export default function CourierMaster() {
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 rounded-3xl bg-rose-50 flex items-center justify-center text-rose-500 mb-6">
+                            <div className="w-20 h-20 rounded-3xl bg-rose-500/20 flex items-center justify-center text-rose-500 mb-6">
                                 <AlertTriangle size={40} />
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                            <h2 className="text-2xl font-bold text-white mb-2">
                                 {Array.isArray(deletingItem?.id) ? "Delete Multiple Partners?" : "Delete Partner?"}
                             </h2>
-                            <p className="text-slate-500 mb-8 leading-relaxed">
-                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-slate-900">"{deletingItem?.name}"</span> from your courier directory?
+                            <p className="text-slate-400 mb-8 leading-relaxed">
+                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-white">"{deletingItem?.name}"</span> from your courier directory?
                             </p>
                             <div className="flex w-full gap-4">
                                 <button
                                     onClick={() => setShowDeleteModal(false)}
-                                    className="flex-1 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>

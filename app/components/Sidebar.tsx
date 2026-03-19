@@ -118,7 +118,7 @@ export default function Sidebar() {
     });
 
     return (
-        <aside className="w-72 h-screen border-r border-[var(--border)] bg-white flex flex-col sticky top-0">
+        <aside className="w-72 h-screen border-r border-white/10 bg-slate-900/40 backdrop-blur-xl flex flex-col sticky top-0">
             <div className="p-8">
                 {/* Logo Removed as requested */}
             </div>
@@ -155,7 +155,7 @@ export default function Sidebar() {
                 })}
             </nav>
 
-            <div className="p-6 border-t border-[var(--border)] bg-slate-50/50">
+            <div className="p-6 border-t border-white/10 bg-slate-900/60">
                 <div className="flex items-center gap-3">
                     <Link
                         href="/profile"
@@ -168,7 +168,7 @@ export default function Sidebar() {
                             className="group-hover:scale-105 transition-transform"
                         />
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-slate-900 truncate group-hover:text-[var(--primary-foreground)] transition-colors">{user.name}</p>
+                            <p className="text-sm font-bold text-white truncate group-hover:text-[var(--primary)] transition-colors">{user.name}</p>
                             <div className="flex items-center gap-1">
                                 <p className="text-[10px] text-slate-500 truncate">{user.email}</p>
                                 {(user as any).team && (
@@ -183,7 +183,7 @@ export default function Sidebar() {
 
                     <button
                         onClick={handleLogout}
-                        className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all border border-transparent hover:border-rose-100 shadow-sm"
+                        className="p-2.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all border border-transparent hover:border-rose-500/20 shadow-sm"
                         title="Logout"
                     >
                         <LogOut size={18} />

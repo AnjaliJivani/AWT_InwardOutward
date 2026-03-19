@@ -226,15 +226,15 @@ export default function OfficeMaster() {
                         <Building2 size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest">Master Directory</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Office Master</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Manage your organization's branches and departments.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">Office Master</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Manage your organization's branches and departments.</p>
                 </div>
                 <div className="flex gap-3">
                     {!isSelectionMode ? (
                         <>
                             <button
                                 onClick={handleReload}
-                                className={`p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600 ${isRefreshing ? 'text-blue-600 border-blue-100 bg-blue-50/50' : ''}`}
+                                className={`p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 ${isRefreshing ? 'text-cyan-400 border-cyan-500/30 text-cyan-100 bg-cyan-500/10' : ''}`}
                                 disabled={loading || isRefreshing}
                                 title="Refresh Data"
                             >
@@ -242,7 +242,7 @@ export default function OfficeMaster() {
                             </button>
                             <button
                                 onClick={() => setIsSelectionMode(true)}
-                                className="p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600 group"
+                                className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 group"
                                 title="Bulk Delete Mode"
                             >
                                 <Trash2 size={20} className="group-hover:text-rose-500 transition-colors" />
@@ -260,7 +260,7 @@ export default function OfficeMaster() {
                                     });
                                     setShowForm(true);
                                 }}
-                                className="pastel-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5"
+                                className="glow-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5"
                             >
                                 <Plus size={20} />
                                 Add Office
@@ -273,7 +273,7 @@ export default function OfficeMaster() {
                                     setIsSelectionMode(false);
                                     setSelectedIds([]);
                                 }}
-                                className="px-6 py-3.5 border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all flex items-center gap-2"
+                                className="px-6 py-3.5 border border-white/10 rounded-2xl font-bold text-slate-300 hover:bg-white/5 transition-all flex items-center gap-2"
                             >
                                 <X size={20} />
                                 Exit Selection
@@ -292,14 +292,14 @@ export default function OfficeMaster() {
             </header>
 
             {/* Main Content Area */}
-            <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                <div className="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
                     <div className="relative">
                         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input
                             type="text"
                             placeholder="Search offices..."
-                            className="pastel-input py-2.5 pl-12 text-sm w-80 bg-white"
+                            className="neon-input py-2.5 pl-12 text-sm w-80 bg-slate-900/40 backdrop-blur-sm"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -309,12 +309,12 @@ export default function OfficeMaster() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50/50">
+                            <tr className="bg-white/5">
                                 {isSelectionMode && (
                                     <th className="px-8 py-5 text-xs text-center w-12">
                                         <input
                                             type="checkbox"
-                                            className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                            className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                             checked={filteredOffices.length > 0 && selectedIds.length === filteredOffices.length}
                                             onChange={handleSelectAll}
                                         />
@@ -342,12 +342,12 @@ export default function OfficeMaster() {
                                     <td colSpan={6} className="px-8 py-10 text-center text-slate-400">No offices matching "{searchTerm}" found.</td>
                                 </tr>
                             ) : filteredOffices.map((office) => (
-                                <tr key={office.InwardOutwardOfficeID} className={`hover:bg-slate-50/30 transition-colors group ${selectedIds.includes(office.InwardOutwardOfficeID) ? 'bg-blue-50/30' : ''}`}>
+                                <tr key={office.InwardOutwardOfficeID} className={`hover:bg-white/[0.02] transition-colors group ${selectedIds.includes(office.InwardOutwardOfficeID) ? 'bg-cyan-500/20/30' : ''}`}>
                                     {isSelectionMode && (
                                         <td className="px-8 py-6 text-center">
                                             <input
                                                 type="checkbox"
-                                                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                                className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                                 checked={selectedIds.includes(office.InwardOutwardOfficeID)}
                                                 onChange={() => handleSelectRow(office.InwardOutwardOfficeID)}
                                             />
@@ -355,26 +355,26 @@ export default function OfficeMaster() {
                                     )}
                                     <td className="px-8 py-6">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-slate-700">
+                                            <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-slate-200">
                                                 <Building2 size={20} />
                                             </div>
-                                            <span className="font-bold text-slate-800">{office.OfficeName}</span>
+                                            <span className="font-bold text-white">{office.OfficeName}</span>
                                         </div>
                                     </td>
-                                    <td className="px-8 py-6 text-sm font-medium text-slate-500">Institute #{office.InstituteID}</td>
+                                    <td className="px-8 py-6 text-sm font-medium text-slate-400">Institute #{office.InstituteID}</td>
                                     <td className="px-8 py-6">
-                                        <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                                        <div className="flex items-center gap-2 text-sm text-slate-400 font-medium">
                                             <Calendar size={14} className="text-slate-400" />
                                             {new Date(office.OpeningDate).toLocaleDateString()}
                                         </div>
                                     </td>
                                     <td className="px-8 py-6 text-center">
-                                        <span className="inline-block bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-bold">
+                                        <span className="inline-block bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-lg text-xs font-bold">
                                             #{office.OpeningInwardNo}
                                         </span>
                                     </td>
                                     <td className="px-8 py-6 text-center">
-                                        <span className="inline-block bg-orange-50 text-orange-600 px-3 py-1 rounded-lg text-xs font-bold">
+                                        <span className="inline-block bg-violet-500/20 text-violet-400 px-3 py-1 rounded-lg text-xs font-bold">
                                             #{office.OpeningOutwardNo}
                                         </span>
                                     </td>
@@ -382,13 +382,13 @@ export default function OfficeMaster() {
                                         <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <button
                                                 onClick={() => handleEdit(office)}
-                                                className="p-2 text-slate-400 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-transparent hover:border-slate-100 shadow-sm"
+                                                className="p-2 text-slate-400 hover:text-white hover:bg-slate-900/40 backdrop-blur-sm rounded-lg transition-all border border-transparent hover:border-white/10 shadow-sm"
                                             >
                                                 <Edit2 size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(office.InwardOutwardOfficeID, office.OfficeName)}
-                                                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all border border-transparent hover:border-rose-100 shadow-sm"
+                                                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-500/20 rounded-lg transition-all border border-transparent hover:border-rose-500/30 shadow-sm"
                                             >
                                                 <Trash2 size={16} />
                                             </button>
@@ -400,15 +400,15 @@ export default function OfficeMaster() {
                     </table>
                 </div>
 
-                <div className="p-8 border-t border-slate-50 flex items-center justify-between bg-slate-50/20">
-                    <p className="text-sm font-medium text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                <div className="p-8 border-t border-white/5 flex items-center justify-between bg-white/5/20">
+                    <p className="text-sm font-medium text-slate-400 text-[10px] font-bold uppercase tracking-widest">
                         Showing {filteredOffices.length} of {offices.length} offices
                     </p>
                     <div className="flex items-center gap-2">
-                        <button className="p-2 text-slate-400 hover:text-slate-900 disabled:opacity-30" disabled>
+                        <button className="p-2 text-slate-400 hover:text-white disabled:opacity-30" disabled>
                             <ChevronLeft size={20} />
                         </button>
-                        <button className="p-2 text-slate-400 hover:text-slate-900 disabled:opacity-30" disabled>
+                        <button className="p-2 text-slate-400 hover:text-white disabled:opacity-30" disabled>
                             <ChevronRight size={20} />
                         </button>
                     </div>
@@ -418,15 +418,15 @@ export default function OfficeMaster() {
             {/* Form Dialog */}
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/10 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-xl rounded-[2rem] border border-[var(--border)] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-                        <div className="p-8 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-xl rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+                        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                             <div>
-                                <h2 className="text-xl font-bold text-slate-900">{editingId ? "Edit Office" : "Add New Office"}</h2>
-                                <p className="text-sm text-slate-500 mt-1">{editingId ? "Modify the existing office details." : "Fill in the office registration details below."}</p>
+                                <h2 className="text-xl font-bold text-white">{editingId ? "Edit Office" : "Add New Office"}</h2>
+                                <p className="text-sm text-slate-400 mt-1">{editingId ? "Modify the existing office details." : "Fill in the office registration details below."}</p>
                             </div>
                             <button
                                 onClick={() => setShowForm(false)}
-                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 text-slate-400 hover:text-slate-900 transition-all font-bold text-2xl"
+                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-900/40 backdrop-blur-sm hover:shadow-sm border border-transparent hover:border-white/10 text-slate-400 hover:text-white transition-all font-bold text-2xl"
                             >
                                 &times;
                             </button>
@@ -435,10 +435,10 @@ export default function OfficeMaster() {
                         <form onSubmit={handleSubmit} className="p-8 space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="col-span-2">
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Office Name</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Office Name</label>
                                     <input
                                         type="text"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="e.g. Main Branch"
                                         value={formData.OfficeName}
                                         onChange={(e) => setFormData({ ...formData, OfficeName: e.target.value })}
@@ -446,10 +446,10 @@ export default function OfficeMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Institute ID</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Institute ID</label>
                                     <input
                                         type="number"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="1"
                                         value={formData.InstituteID}
                                         onChange={(e) => setFormData({ ...formData, InstituteID: e.target.value })}
@@ -457,30 +457,30 @@ export default function OfficeMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Department ID</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Department ID</label>
                                     <input
                                         type="number"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="Optional"
                                         value={formData.DepartmentID}
                                         onChange={(e) => setFormData({ ...formData, DepartmentID: e.target.value })}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Opening Date</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Opening Date</label>
                                     <input
                                         type="date"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         value={formData.OpeningDate}
                                         onChange={(e) => setFormData({ ...formData, OpeningDate: e.target.value })}
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Opening Inward No</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Opening Inward No</label>
                                     <input
                                         type="number"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="1"
                                         value={formData.OpeningInwardNo}
                                         onChange={(e) => setFormData({ ...formData, OpeningInwardNo: e.target.value })}
@@ -488,10 +488,10 @@ export default function OfficeMaster() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Opening Outward No</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Opening Outward No</label>
                                     <input
                                         type="number"
-                                        className="pastel-input"
+                                        className="neon-input"
                                         placeholder="1"
                                         value={formData.OpeningOutwardNo}
                                         onChange={(e) => setFormData({ ...formData, OpeningOutwardNo: e.target.value })}
@@ -504,7 +504,7 @@ export default function OfficeMaster() {
                                 <button
                                     type="button"
                                     onClick={() => setShowForm(false)}
-                                    className="flex-1 py-3.5 rounded-2xl border border-[var(--border)] font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-3.5 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>
@@ -524,21 +524,21 @@ export default function OfficeMaster() {
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 rounded-3xl bg-rose-50 flex items-center justify-center text-rose-500 mb-6">
+                            <div className="w-20 h-20 rounded-3xl bg-rose-500/20 flex items-center justify-center text-rose-500 mb-6">
                                 <AlertTriangle size={40} />
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                            <h2 className="text-2xl font-bold text-white mb-2">
                                 {Array.isArray(deletingItem?.id) ? "Delete Multiple Offices?" : "Delete Office Master?"}
                             </h2>
-                            <p className="text-slate-500 mb-8 leading-relaxed">
-                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-slate-900">"{deletingItem?.name}"</span> from your records?
+                            <p className="text-slate-400 mb-8 leading-relaxed">
+                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-white">"{deletingItem?.name}"</span> from your records?
                             </p>
                             <div className="flex w-full gap-4">
                                 <button
                                     onClick={cancelDelete}
-                                    className="flex-1 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>

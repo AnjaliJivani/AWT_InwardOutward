@@ -278,8 +278,8 @@ export default function AdminMaster() {
                         <Users size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest">Master Directory</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Admin Master</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Manage system users, roles and permissions.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">Admin Master</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Manage system users, roles and permissions.</p>
                 </div>
                 <div className="flex gap-3">
                     {!isSelectionMode ? (
@@ -287,14 +287,14 @@ export default function AdminMaster() {
                             <button
                                 onClick={handleReload}
                                 disabled={loading || isRefreshing}
-                                className={`p-3 border border-[var(--border)] rounded-2xl hover:bg-[var(--secondary)] transition-all text-[var(--primary-foreground)] ${isRefreshing ? 'text-blue-600 border-blue-100 bg-blue-50/50' : ''}`}
+                                className={`p-3 border border-white/10 rounded-2xl hover:bg-[var(--secondary)] transition-all text-[var(--primary-foreground)] ${isRefreshing ? 'text-cyan-400 border-cyan-500/30 text-cyan-100 bg-cyan-500/10' : ''}`}
                                 title="Reload Data"
                             >
                                 <History size={20} className={isRefreshing ? 'animate-spin' : ''} />
                             </button>
                             <button
                                 onClick={() => setIsSelectionMode(true)}
-                                className="p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600 group"
+                                className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300 group"
                                 title="Bulk Delete Mode"
                             >
                                 <Trash2 size={20} className="group-hover:text-rose-500 transition-colors" />
@@ -311,7 +311,7 @@ export default function AdminMaster() {
                                     });
                                     setShowForm(true);
                                 }}
-                                className="pastel-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
+                                className="glow-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
                             >
                                 <Plus size={20} />
                                 Add User
@@ -324,7 +324,7 @@ export default function AdminMaster() {
                                     setIsSelectionMode(false);
                                     setSelectedIds([]);
                                 }}
-                                className="px-6 py-3.5 border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all flex items-center gap-2"
+                                className="px-6 py-3.5 border border-white/10 rounded-2xl font-bold text-slate-300 hover:bg-white/5 transition-all flex items-center gap-2"
                             >
                                 <X size={20} />
                                 Exit Selection
@@ -342,7 +342,7 @@ export default function AdminMaster() {
                 </div>
             </header>
 
-            <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-slate-100">
+            <div className="flex gap-2 p-1.5 bg-slate-100/50 rounded-2xl w-fit border border-white/10">
                 {(typeof window !== "undefined" && globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin'
                     ? ["All", "Super Admin", "Admin", "Clerk"]
                     : ["All", "Admin", "Clerk"]
@@ -351,8 +351,8 @@ export default function AdminMaster() {
                         key={filter}
                         onClick={() => setActiveFilter(filter)}
                         className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeFilter === filter
-                            ? "bg-white text-slate-900 shadow-md ring-1 ring-slate-200"
-                            : "text-slate-500 hover:text-slate-900"
+                            ? "bg-slate-900/40 backdrop-blur-sm text-white shadow-md ring-1 ring-slate-200"
+                            : "text-slate-400 hover:text-white"
                             }`}
                     >
                         {filter}
@@ -361,14 +361,14 @@ export default function AdminMaster() {
             </div>
 
             {/* Main Content Area */}
-            <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                <div className="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
                     <div className="relative">
                         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input
                             type="text"
                             placeholder="Search users by name or email..."
-                            className="pastel-input py-2.5 pl-12 text-sm w-80 bg-white"
+                            className="neon-input py-2.5 pl-12 text-sm w-80 bg-slate-900/40 backdrop-blur-sm"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -378,12 +378,12 @@ export default function AdminMaster() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50/50">
+                            <tr className="bg-white/5">
                                 {isSelectionMode && (
                                     <th className="px-8 py-5 text-xs text-center w-12">
                                         <input
                                             type="checkbox"
-                                            className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                            className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                             checked={filteredUsers.length > 0 && selectedIds.length === filteredUsers.length}
                                             onChange={handleSelectAll}
                                         />
@@ -412,12 +412,12 @@ export default function AdminMaster() {
                                     <td colSpan={isSelectionMode ? 6 : 5} className="px-8 py-10 text-center text-slate-400">No users matching "{searchTerm}" found.</td>
                                 </tr>
                             ) : filteredUsers.map((user) => (
-                                <tr key={user.UserID} className={`hover:bg-slate-50/30 transition-colors group ${selectedIds.includes(user.UserID) ? 'bg-blue-50/30' : ''}`}>
+                                <tr key={user.UserID} className={`hover:bg-white/[0.02] transition-colors group ${selectedIds.includes(user.UserID) ? 'bg-cyan-500/20/30' : ''}`}>
                                     {isSelectionMode && (
                                         <td className="px-8 py-6 text-center">
                                             <input
                                                 type="checkbox"
-                                                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                                                className="w-4 h-4 rounded border-slate-300 text-cyan-400 focus:ring-blue-500"
                                                 checked={selectedIds.includes(user.UserID)}
                                                 onChange={() => handleSelectRow(user.UserID)}
                                             />
@@ -425,34 +425,34 @@ export default function AdminMaster() {
                                     )}
                                     <td className="px-8 py-6">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-slate-700">
+                                            <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-slate-200">
                                                 <Users size={20} />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-slate-800">{user.Name || "Unnamed User"}</p>
-                                                <p className="text-xs text-slate-500">{user.Email}</p>
+                                                <p className="font-bold text-white">{user.Name || "Unnamed User"}</p>
+                                                <p className="text-xs text-slate-400">{user.Email}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-8 py-6">
                                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold ${user.role.RoleName.toLowerCase().replace(/\s+/g, '') === 'superadmin'
-                                            ? 'bg-emerald-50 text-emerald-600'
+                                            ? 'bg-emerald-500/20 text-emerald-600'
                                             : user.role.RoleName.toLowerCase() === 'admin'
                                                 ? 'bg-purple-50 text-purple-600'
-                                                : 'bg-blue-50 text-blue-600'
+                                                : 'bg-cyan-500/20 text-cyan-400'
                                             }`}>
                                             <Shield size={12} />
                                             {user.role.RoleName.toLowerCase().replace(/\s+/g, '') === 'superadmin' ? 'SUPER ADMIN' : user.role.RoleName.toUpperCase()}
                                         </span>
                                     </td>
-                                    <td className="px-8 py-6 text-sm font-bold text-slate-600">
+                                    <td className="px-8 py-6 text-sm font-bold text-slate-300">
                                         {user.team?.TeamName || "No Team"}
                                     </td>
-                                    <td className="px-8 py-6 text-sm font-medium text-slate-500">
+                                    <td className="px-8 py-6 text-sm font-medium text-slate-400">
                                         {user.JoinedAt ? new Date(user.JoinedAt).toLocaleDateString() : "N/A"}
                                     </td>
                                     <td className="px-8 py-6 text-center">
-                                        <span className={`inline-block px-3 py-1 rounded-lg text-xs font-bold ${user.IsActive ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'
+                                        <span className={`inline-block px-3 py-1 rounded-lg text-xs font-bold ${user.IsActive ? 'bg-emerald-500/20 text-emerald-600' : 'bg-rose-500/20 text-rose-600'
                                             }`}>
                                             {user.IsActive ? 'Active' : 'Inactive'}
                                         </span>
@@ -461,13 +461,13 @@ export default function AdminMaster() {
                                         <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <button
                                                 onClick={() => handleEdit(user)}
-                                                className="p-2 text-slate-400 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-transparent hover:border-slate-100 shadow-sm"
+                                                className="p-2 text-slate-400 hover:text-white hover:bg-slate-900/40 backdrop-blur-sm rounded-lg transition-all border border-transparent hover:border-white/10 shadow-sm"
                                             >
                                                 <Edit2 size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(user.UserID, user.Name)}
-                                                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all border border-transparent hover:border-rose-100 shadow-sm"
+                                                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-500/20 rounded-lg transition-all border border-transparent hover:border-rose-500/30 shadow-sm"
                                             >
                                                 <Trash2 size={16} />
                                             </button>
@@ -479,15 +479,15 @@ export default function AdminMaster() {
                     </table>
                 </div>
 
-                <div className="p-8 border-t border-slate-50 flex items-center justify-between bg-slate-50/20">
-                    <p className="text-sm font-medium text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                <div className="p-8 border-t border-white/5 flex items-center justify-between bg-white/5/20">
+                    <p className="text-sm font-medium text-slate-400 text-[10px] font-bold uppercase tracking-widest">
                         Showing {filteredUsers.length} of {users.length} users
                     </p>
                     <div className="flex items-center gap-2">
-                        <button className="p-2 text-slate-400 hover:text-slate-900 disabled:opacity-30" disabled>
+                        <button className="p-2 text-slate-400 hover:text-white disabled:opacity-30" disabled>
                             <ChevronLeft size={20} />
                         </button>
-                        <button className="p-2 text-slate-400 hover:text-slate-900 disabled:opacity-30" disabled>
+                        <button className="p-2 text-slate-400 hover:text-white disabled:opacity-30" disabled>
                             <ChevronRight size={20} />
                         </button>
                     </div>
@@ -497,15 +497,15 @@ export default function AdminMaster() {
             {/* Form Dialog */}
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/10 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-xl rounded-[2rem] border border-[var(--border)] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-                        <div className="p-8 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-xl rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+                        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                             <div>
-                                <h2 className="text-xl font-bold text-slate-900">{editingId ? "Edit User" : "Add New User"}</h2>
-                                <p className="text-sm text-slate-500 mt-1">{editingId ? "Modify the existing user details." : "Create a new admin or clerk account."}</p>
+                                <h2 className="text-xl font-bold text-white">{editingId ? "Edit User" : "Add New User"}</h2>
+                                <p className="text-sm text-slate-400 mt-1">{editingId ? "Modify the existing user details." : "Create a new admin or clerk account."}</p>
                             </div>
                             <button
                                 onClick={() => setShowForm(false)}
-                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 text-slate-400 hover:text-slate-900 transition-all font-bold text-2xl"
+                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-900/40 backdrop-blur-sm hover:shadow-sm border border-transparent hover:border-white/10 text-slate-400 hover:text-white transition-all font-bold text-2xl"
                             >
                                 &times;
                             </button>
@@ -514,12 +514,12 @@ export default function AdminMaster() {
                         <form onSubmit={handleSubmit} className="p-8 space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="col-span-2">
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Full Name</label>
                                     <div className="relative">
                                         <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                         <input
                                             type="text"
-                                            className="pastel-input pl-12"
+                                            className="neon-input pl-12"
                                             placeholder="e.g. John Doe"
                                             value={formData.Name}
                                             onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
@@ -528,12 +528,12 @@ export default function AdminMaster() {
                                     </div>
                                 </div>
                                 <div className="col-span-2">
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">Email Address</label>
                                     <div className="relative">
                                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                         <input
                                             type="email"
-                                            className="pastel-input pl-12"
+                                            className="neon-input pl-12"
                                             placeholder="user@example.com"
                                             value={formData.Email}
                                             onChange={(e) => setFormData({ ...formData, Email: e.target.value })}
@@ -542,14 +542,14 @@ export default function AdminMaster() {
                                     </div>
                                 </div>
                                 <div className={editingId ? "col-span-2" : "col-span-1"}>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                                    <label className="block text-sm font-bold text-slate-200 mb-2">
                                         {editingId ? "New Password (Leave blank to keep current)" : "Password"}
                                     </label>
                                     <div className="relative">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                         <input
                                             type="password"
-                                            className="pastel-input pl-12"
+                                            className="neon-input pl-12"
                                             placeholder="Min. 6 characters"
                                             value={formData.Password}
                                             onChange={(e) => setFormData({ ...formData, Password: e.target.value })}
@@ -561,9 +561,9 @@ export default function AdminMaster() {
                                 {(!editingId || editingId) && (
                                     <>
                                         <div className="col-span-1">
-                                            <label className="block text-sm font-bold text-slate-700 mb-2">Role</label>
+                                            <label className="block text-sm font-bold text-slate-200 mb-2">Role</label>
                                             <select
-                                                className="pastel-input appearance-none"
+                                                className="neon-input appearance-none"
                                                 value={formData.RoleID}
                                                 onChange={(e) => setFormData({ ...formData, RoleID: e.target.value })}
                                                 required
@@ -591,12 +591,12 @@ export default function AdminMaster() {
                                         </div>
                                         <div className="col-span-1">
                                             <div className="flex justify-between items-center mb-2">
-                                                <label className="block text-sm font-bold text-slate-700">Team</label>
+                                                <label className="block text-sm font-bold text-slate-200">Team</label>
                                                 {typeof window !== "undefined" && globalThis.localStorage?.getItem("userRole")?.toLowerCase().replace(/\s+/g, '') === 'superadmin' && (
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowTeamForm(true)}
-                                                        className="p-1 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+                                                        className="p-1 rounded-lg bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition-colors"
                                                         title="Create New Team"
                                                     >
                                                         <Plus size={14} />
@@ -604,7 +604,7 @@ export default function AdminMaster() {
                                                 )}
                                             </div>
                                             <select
-                                                className="pastel-input appearance-none"
+                                                className="neon-input appearance-none"
                                                 value={formData.TeamID}
                                                 onChange={(e) => setFormData({ ...formData, TeamID: e.target.value })}
                                                 required
@@ -625,7 +625,7 @@ export default function AdminMaster() {
                                 <button
                                     type="button"
                                     onClick={() => setShowForm(false)}
-                                    className="flex-1 py-3.5 rounded-2xl border border-[var(--border)] font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-3.5 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>
@@ -652,19 +652,19 @@ export default function AdminMaster() {
             {/* Team Creation Modal */}
             {showTeamForm && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold text-slate-900">Create New Team</h2>
+                            <h2 className="text-xl font-bold text-white">Create New Team</h2>
                             <button onClick={() => setShowTeamForm(false)} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
                                 <X size={20} className="text-slate-400" />
                             </button>
                         </div>
                         <form onSubmit={handleAddTeam} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Team Name</label>
+                                <label className="block text-sm font-bold text-slate-200 mb-2">Team Name</label>
                                 <input
                                     type="text"
-                                    className="pastel-input"
+                                    className="neon-input"
                                     placeholder="e.g. Finance, HR, IT"
                                     value={newTeamName}
                                     onChange={(e) => setNewTeamName(e.target.value)}
@@ -693,21 +693,21 @@ export default function AdminMaster() {
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 rounded-3xl bg-rose-50 flex items-center justify-center text-rose-500 mb-6">
+                            <div className="w-20 h-20 rounded-3xl bg-rose-500/20 flex items-center justify-center text-rose-500 mb-6">
                                 <AlertTriangle size={40} />
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                            <h2 className="text-2xl font-bold text-white mb-2">
                                 {Array.isArray(deletingItem?.id) ? "Delete Multiple Users?" : "Delete User?"}
                             </h2>
-                            <p className="text-slate-500 mb-8 leading-relaxed">
-                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-slate-900">"{deletingItem?.name}"</span> from the system?
+                            <p className="text-slate-400 mb-8 leading-relaxed">
+                                This action cannot be undone. Are you sure you want to remove <span className="font-bold text-white">"{deletingItem?.name}"</span> from the system?
                             </p>
                             <div className="flex w-full gap-4">
                                 <button
                                     onClick={() => setShowDeleteModal(false)}
-                                    className="flex-1 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>

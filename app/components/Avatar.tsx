@@ -62,7 +62,7 @@ export default function UserAvatar({
 
     return (
         <div
-            className={`${sizeClasses[size]} ${borderRadius} overflow-hidden flex items-center justify-center shrink-0 border border-white shadow-sm ${className} ${!src || imageError ? colorClass : "bg-slate-100"
+            className={`${sizeClasses[size]} ${borderRadius} overflow-hidden flex items-center justify-center shrink-0 border border-white/10 shadow-sm ${className} ${!src || imageError ? colorClass : "bg-slate-800"
                 }`}
         >
             {src && !imageError ? (

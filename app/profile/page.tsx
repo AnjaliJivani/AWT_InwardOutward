@@ -292,16 +292,16 @@ export default function ProfilePage() {
                         <User size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest text-[var(--primary-foreground)]/60">Account Center</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">My Profile</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Manage your personal information and preferences.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">My Profile</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Manage your personal information and preferences.</p>
                 </div>
                 <div className="flex gap-3">
-                    <button className="p-3 border border-[var(--border)] rounded-2xl hover:bg-[var(--secondary)] transition-all text-[var(--primary-foreground)]">
+                    <button className="p-3 border border-white/10 rounded-2xl hover:bg-[var(--secondary)] transition-all text-[var(--primary-foreground)]">
                         <Bell size={20} />
                     </button>
                     <button
                         onClick={handleOpenEdit}
-                        className="pastel-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
+                        className="glow-button flex items-center gap-2 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 shadow-lg shadow-slate-100"
                     >
                         <Settings size={20} />
                         Edit Settings
@@ -312,11 +312,11 @@ export default function ProfilePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column: Avatar and Quick Info */}
                 <div className="lg:col-span-1 space-y-8">
-                    <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm relative group">
+                    <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm relative group">
                         <div className="h-32 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] absolute top-0 left-0 right-0" />
                         <div className="pt-16 pb-10 px-8 relative flex flex-col items-center">
                             <div className="relative mb-6">
-                                <div className="w-32 h-32 rounded-[2.5rem] bg-white p-1 shadow-xl">
+                                <div className="w-32 h-32 rounded-[2.5rem] bg-slate-900/40 backdrop-blur-sm p-1 shadow-xl">
                                     <div className="w-full h-full rounded-[2.2rem] overflow-hidden">
                                         <UserAvatar
                                             name={user.name}
@@ -331,26 +331,26 @@ export default function ProfilePage() {
                                     {user.profilePath && (
                                         <button
                                             onClick={handleRemovePhoto}
-                                            className="w-10 h-10 rounded-2xl bg-white border border-rose-50 shadow-lg flex items-center justify-center text-rose-400 hover:text-rose-600 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 cursor-pointer"
+                                            className="w-10 h-10 rounded-2xl bg-slate-900/40 backdrop-blur-sm border border-rose-50 shadow-lg flex items-center justify-center text-rose-400 hover:text-rose-600 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 cursor-pointer"
                                             title="Remove Photo"
                                         >
                                             <Trash2 size={18} />
                                         </button>
                                     )}
-                                    <label className="w-10 h-10 rounded-2xl bg-white border border-slate-100 shadow-lg flex items-center justify-center text-slate-400 hover:text-slate-900 transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 cursor-pointer">
+                                    <label className="w-10 h-10 rounded-2xl bg-slate-900/40 backdrop-blur-sm border border-white/10 shadow-lg flex items-center justify-center text-slate-400 hover:text-white transition-all opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 cursor-pointer">
                                         <Camera size={18} />
                                         <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
                                     </label>
                                 </div>
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900">{user.name}</h2>
+                            <h2 className="text-2xl font-bold text-white">{user.name}</h2>
                             <p className="text-sm font-bold text-[var(--primary-foreground)] bg-[var(--primary)] px-4 py-1 rounded-full mt-2 uppercase tracking-wide">
                                 {user.role}
                             </p>
 
-                            <div className="w-full mt-10 pt-8 border-t border-slate-50 space-y-4">
-                                <div className="flex items-center gap-4 text-slate-600">
-                                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0">
+                            <div className="w-full mt-10 pt-8 border-t border-white/5 space-y-4">
+                                <div className="flex items-center gap-4 text-slate-300">
+                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
                                         <Mail size={18} className="text-slate-400" />
                                     </div>
                                     <div className="min-w-0">
@@ -358,8 +358,8 @@ export default function ProfilePage() {
                                         <p className="text-sm font-semibold truncate">{user.email}</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4 text-slate-600">
-                                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0">
+                                <div className="flex items-center gap-4 text-slate-300">
+                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
                                         <Calendar size={18} className="text-slate-400" />
                                     </div>
                                     <div className="min-w-0">
@@ -371,8 +371,8 @@ export default function ProfilePage() {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4 text-slate-600">
-                                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0">
+                                <div className="flex items-center gap-4 text-slate-300">
+                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
                                         <MapPin size={18} className="text-slate-400" />
                                     </div>
                                     <div className="min-w-0">
@@ -385,9 +385,9 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-slate-900/40 backdrop-blur-sm/5 rounded-full -mr-16 -mt-16 blur-2xl" />
                         <h3 className="text-lg font-bold mb-4 relative z-10">Account Status</h3>
-                        <div className="flex items-center gap-3 bg-white/10 p-4 rounded-2xl backdrop-blur-sm relative z-10 border border-white/10">
+                        <div className="flex items-center gap-3 bg-slate-900/40 backdrop-blur-sm/10 p-4 rounded-2xl backdrop-blur-sm relative z-10 border border-white/10">
                             <CheckCircle2 className="text-emerald-400" size={24} />
                             <div>
                                 <p className="text-sm font-bold">Verified Account</p>
@@ -402,35 +402,35 @@ export default function ProfilePage() {
 
                 {/* Right Column: Detailed Info and Activity */}
                 <div className="lg:col-span-2 space-y-8">
-                    <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                        <div className="p-8 border-b border-slate-50 bg-[var(--secondary)]/30">
-                            <h2 className="text-xl font-bold text-slate-900">Security & Roles</h2>
+                    <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                        <div className="p-8 border-b border-white/5 bg-[var(--secondary)]/30">
+                            <h2 className="text-xl font-bold text-white">Security & Roles</h2>
                         </div>
                         <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
                                 <Shield className="text-[var(--primary-foreground)] mb-4" size={28} />
-                                <h4 className="font-bold text-slate-900 mb-2">Role Permissions</h4>
+                                <h4 className="font-bold text-white mb-2">Role Permissions</h4>
                                 <ul className="space-y-2">
-                                    <li className="flex items-center gap-2 text-sm text-slate-500">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                    <li className="flex items-center gap-2 text-sm text-slate-400">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/200" />
                                         Inward/Outward Log Access
                                     </li>
-                                    <li className="flex items-center gap-2 text-sm text-slate-500">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                    <li className="flex items-center gap-2 text-sm text-slate-400">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/200" />
                                         Masters Visibility
                                     </li>
                                     {user.role === 'admin' && (
-                                        <li className="flex items-center gap-2 text-sm text-slate-500">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                        <li className="flex items-center gap-2 text-sm text-slate-400">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/200" />
                                             Admin Management
                                         </li>
                                     )}
                                 </ul>
                             </div>
-                            <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
                                 <Clock className="text-[var(--primary-foreground)] mb-4" size={28} />
-                                <h4 className="font-bold text-slate-900 mb-2">Session Info</h4>
-                                <p className="text-sm text-slate-500 leading-relaxed mb-4">
+                                <h4 className="font-bold text-white mb-2">Session Info</h4>
+                                <p className="text-sm text-slate-400 leading-relaxed mb-4">
                                     Your session is active. For security, remember to sign out when using shared devices.
                                 </p>
                                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</div>
@@ -439,19 +439,19 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
-                    <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                        <div className="p-8 border-b border-slate-50 bg-[var(--secondary)]/30">
-                            <h2 className="text-xl font-bold text-slate-900">Information Summary</h2>
+                    <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                        <div className="p-8 border-b border-white/5 bg-[var(--secondary)]/30">
+                            <h2 className="text-xl font-bold text-white">Information Summary</h2>
                         </div>
                         <div className="p-8">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {[
-                                    { label: "Total Inward", value: stats.totalInward, color: "bg-blue-50 text-blue-600" },
+                                    { label: "Total Inward", value: stats.totalInward, color: "bg-cyan-500/20 text-cyan-400" },
                                     { label: "Total Outward", value: stats.totalOutward, color: "bg-purple-50 text-purple-600" },
-                                    { label: "Masters Managed", value: stats.totalMasters, color: "bg-emerald-50 text-emerald-600" },
-                                    { label: "Pending Tasks", value: stats.pendingTasks, color: "bg-orange-50 text-orange-600" },
+                                    { label: "Masters Managed", value: stats.totalMasters, color: "bg-emerald-500/20 text-emerald-600" },
+                                    { label: "Pending Tasks", value: stats.pendingTasks, color: "bg-violet-500/20 text-violet-400" },
                                 ].map((stat, i) => (
-                                    <div key={i} className="p-6 rounded-3xl bg-white border border-slate-100 text-center">
+                                    <div key={i} className="p-6 rounded-3xl bg-slate-900/40 backdrop-blur-sm border border-white/10 text-center">
                                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
                                         <p className={`text-2xl font-black ${stat.color.split(' ')[1]}`}>{stat.value}</p>
                                     </div>
@@ -473,29 +473,29 @@ export default function ProfilePage() {
             {/* Edit Settings Modal */}
             {showEditModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-300">
-                        <div className="p-8 border-b border-slate-50 bg-[var(--secondary)]/30 flex justify-between items-center">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 animate-in zoom-in-95 duration-300">
+                        <div className="p-8 border-b border-white/5 bg-[var(--secondary)]/30 flex justify-between items-center">
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900">Edit Profile</h2>
+                                <h2 className="text-2xl font-bold text-white">Edit Profile</h2>
                                 <p className="text-[var(--primary-foreground)]/60 text-sm font-medium">Update your account credentials</p>
                             </div>
-                            <button onClick={() => setShowEditModal(false)} className="text-slate-400 hover:text-slate-900 text-2xl font-light">&times;</button>
+                            <button onClick={() => setShowEditModal(false)} className="text-slate-400 hover:text-white text-2xl font-light">&times;</button>
                         </div>
 
                         <form onSubmit={handleUpdate} className="p-8 space-y-6">
                             {error && (
-                                <div className="bg-rose-50 text-rose-600 text-sm p-4 rounded-2xl border border-rose-100 flex items-center gap-2">
+                                <div className="bg-rose-500/20 text-rose-600 text-sm p-4 rounded-2xl border border-rose-500/30 flex items-center gap-2">
                                     <AlertTriangle size={18} />
                                     {error}
                                 </div>
                             )}
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Full Name</label>
+                                <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Full Name</label>
                                 <div className="flex gap-4 items-center">
                                     <input
                                         type="text"
-                                        className="pastel-input py-3.5 flex-1"
+                                        className="neon-input py-3.5 flex-1"
                                         value={editFormData.Name || ""}
                                         onChange={(e) => setEditFormData({ ...editFormData, Name: e.target.value })}
                                         placeholder="Enter your name"
@@ -504,7 +504,7 @@ export default function ProfilePage() {
                                         <button
                                             type="button"
                                             onClick={handleRemovePhoto}
-                                            className="p-3.5 rounded-2xl border border-rose-100 bg-rose-50 text-rose-600 hover:bg-rose-100 transition-all flex items-center gap-2 text-sm font-bold shrink-0"
+                                            className="p-3.5 rounded-2xl border border-rose-500/30 bg-rose-500/20 text-rose-600 hover:bg-rose-100 transition-all flex items-center gap-2 text-sm font-bold shrink-0"
                                         >
                                             <Trash2 size={18} />
                                             <span>No Photo</span>
@@ -514,10 +514,10 @@ export default function ProfilePage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Email Address</label>
+                                <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Email Address</label>
                                 <input
                                     type="email"
-                                    className="pastel-input py-3.5"
+                                    className="neon-input py-3.5"
                                     value={editFormData.Email || ""}
                                     onChange={(e) => setEditFormData({ ...editFormData, Email: e.target.value })}
                                     required
@@ -525,10 +525,10 @@ export default function ProfilePage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Joined Date</label>
+                                <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Joined Date</label>
                                 <input
                                     type="date"
-                                    className="pastel-input py-3.5"
+                                    className="neon-input py-3.5"
                                     value={editFormData.JoinedAt || ""}
                                     onChange={(e) => setEditFormData({ ...editFormData, JoinedAt: e.target.value })}
                                 />
@@ -536,21 +536,21 @@ export default function ProfilePage() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">New Password</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">New Password</label>
                                     <input
                                         type="password"
                                         placeholder="Min. 6 characters"
-                                        className="pastel-input py-3.5"
+                                        className="neon-input py-3.5"
                                         value={editFormData.Password || ""}
                                         onChange={(e) => setEditFormData({ ...editFormData, Password: e.target.value })}
                                         minLength={6}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2 px-1">Confirm Password</label>
+                                    <label className="block text-sm font-bold text-slate-200 mb-2 px-1">Confirm Password</label>
                                     <input
                                         type="password"
-                                        className="pastel-input py-3.5"
+                                        className="neon-input py-3.5"
                                         value={editFormData.ConfirmPassword || ""}
                                         onChange={(e) => setEditFormData({ ...editFormData, ConfirmPassword: e.target.value })}
                                         minLength={6}
@@ -562,7 +562,7 @@ export default function ProfilePage() {
                                 <button
                                     type="button"
                                     onClick={() => setShowEditModal(false)}
-                                    className="flex-1 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all"
+                                    className="flex-1 py-4 rounded-2xl border border-white/10 font-bold text-slate-300 hover:bg-white/5 transition-all"
                                 >
                                     Cancel
                                 </button>

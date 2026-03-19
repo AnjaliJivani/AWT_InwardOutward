@@ -62,12 +62,12 @@ export default function AuditLogsPage() {
 
     const getActionColor = (action: string) => {
         switch (action) {
-            case 'CREATE': return 'text-emerald-600 bg-emerald-50 border-emerald-100';
-            case 'UPDATE': return 'text-blue-600 bg-blue-50 border-blue-100';
-            case 'DELETE': return 'text-rose-600 bg-rose-50 border-rose-100';
+            case 'CREATE': return 'text-emerald-600 bg-emerald-500/20 border-emerald-500/30';
+            case 'UPDATE': return 'text-cyan-400 bg-cyan-500/20 border-cyan-500/30 text-cyan-100';
+            case 'DELETE': return 'text-rose-600 bg-rose-500/20 border-rose-500/30';
             case 'LOGIN': return 'text-amber-600 bg-amber-50 border-amber-100';
             case 'CRASH': return 'text-purple-600 bg-purple-50 border-purple-100';
-            default: return 'text-slate-600 bg-slate-50 border-slate-100';
+            default: return 'text-slate-300 bg-white/5 border-white/10';
         }
     };
 
@@ -96,13 +96,13 @@ export default function AuditLogsPage() {
                         <History size={16} />
                         <span className="text-xs font-bold uppercase tracking-widest">System Security</span>
                     </div>
-                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Audit Logs</h1>
-                    <p className="text-slate-500 mt-2 font-medium">Monitor data changes, user activities, and system health.</p>
+                    <h1 className="text-4xl font-bold text-white tracking-tight">Audit Logs</h1>
+                    <p className="text-slate-400 mt-2 font-medium">Monitor data changes, user activities, and system health.</p>
                 </div>
                 <div className="flex gap-3">
                     <button
                         onClick={() => fetchLogs()}
-                        className="p-3 border border-[var(--border)] rounded-2xl hover:bg-slate-50 transition-all text-slate-600"
+                        className="p-3 border border-white/10 rounded-2xl hover:bg-white/5 transition-all text-slate-300"
                         title="Refresh Logs"
                     >
                         <RefreshCw size={20} className={loading ? "animate-spin" : ""} />
@@ -110,20 +110,20 @@ export default function AuditLogsPage() {
                 </div>
             </header>
 
-            <div className="bg-white border border-[var(--border)] rounded-[2.5rem] overflow-hidden shadow-sm">
-                <div className="p-6 border-b border-slate-50 flex flex-wrap items-center gap-4 bg-slate-50/30">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2.5rem] overflow-hidden shadow-sm">
+                <div className="p-6 border-b border-white/5 flex flex-wrap items-center gap-4 bg-white/[0.02]">
                     <div className="relative flex-1 min-w-[300px]">
                         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                         <input
                             type="text"
                             placeholder="Search by table, user, or details..."
-                            className="pastel-input py-2.5 pl-12 text-sm w-full bg-white"
+                            className="neon-input py-2.5 pl-12 text-sm w-full bg-slate-900/40 backdrop-blur-sm"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
                     <select
-                        className="pastel-input py-2.5 text-sm w-48 bg-white"
+                        className="neon-input py-2.5 text-sm w-48 bg-slate-900/40 backdrop-blur-sm"
                         value={actionFilter}
                         onChange={(e) => setActionFilter(e.target.value)}
                     >
@@ -135,7 +135,7 @@ export default function AuditLogsPage() {
                         <option value="CRASH">CRASH</option>
                     </select>
                     <select
-                        className="pastel-input py-2.5 text-sm w-48 bg-white"
+                        className="neon-input py-2.5 text-sm w-48 bg-slate-900/40 backdrop-blur-sm"
                         value={tableFilter}
                         onChange={(e) => setTableFilter(e.target.value)}
                     >
@@ -153,7 +153,7 @@ export default function AuditLogsPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50/50">
+                            <tr className="bg-white/5">
                                 <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">Timestamp</th>
                                 <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">User</th>
                                 <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">Module</th>
@@ -177,26 +177,26 @@ export default function AuditLogsPage() {
                                     <td colSpan={6} className="px-8 py-20 text-center text-slate-400 font-medium">No audit logs found matching your filters.</td>
                                 </tr>
                             ) : filteredLogs.map((log) => (
-                                <tr key={log.AuditLogID} className="hover:bg-slate-50/30 transition-colors group">
+                                <tr key={log.AuditLogID} className="hover:bg-white/[0.02] transition-colors group">
                                     <td className="px-8 py-6">
-                                        <div className="flex items-center gap-2 text-slate-700 font-medium whitespace-nowrap">
+                                        <div className="flex items-center gap-2 text-slate-200 font-medium whitespace-nowrap">
                                             <Calendar size={14} className="text-slate-300" />
                                             {formatDate(log.Created)}
                                         </div>
                                     </td>
                                     <td className="px-8 py-6">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-xs uppercase">
+                                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold text-xs uppercase">
                                                 {log.user?.Name?.charAt(0) || "S"}
                                             </div>
                                             <div>
-                                                <p className="text-sm font-bold text-slate-800">{log.user?.Name || "System"}</p>
+                                                <p className="text-sm font-bold text-white">{log.user?.Name || "System"}</p>
                                                 <p className="text-[10px] text-slate-400 font-medium uppercase tracking-tighter">{log.team?.TeamName || "Global"}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-8 py-6">
-                                        <div className="flex items-center gap-2 font-bold text-slate-600 text-sm">
+                                        <div className="flex items-center gap-2 font-bold text-slate-300 text-sm">
                                             <Database size={14} className="text-slate-300" />
                                             {log.TableName}
                                         </div>
@@ -207,7 +207,7 @@ export default function AuditLogsPage() {
                                         </span>
                                     </td>
                                     <td className="px-8 py-6">
-                                        <div className="max-w-[200px] truncate text-xs text-slate-500 font-medium" title={log.Details}>
+                                        <div className="max-w-[200px] truncate text-xs text-slate-400 font-medium" title={log.Details}>
                                             {log.Details || (log.Action === 'UPDATE' ? `Updated record #${log.RecordID}` : log.Action === 'CREATE' ? `Created record #${log.RecordID}` : '-')}
                                         </div>
                                     </td>
@@ -218,7 +218,7 @@ export default function AuditLogsPage() {
                                                     setSelectedLog(log);
                                                     setShowDetails(true);
                                                 }}
-                                                className="p-2 text-slate-400 hover:text-slate-900 hover:bg-white rounded-lg transition-all border border-transparent hover:border-slate-100 shadow-sm"
+                                                className="p-2 text-slate-400 hover:text-white hover:bg-slate-900/40 backdrop-blur-sm rounded-lg transition-all border border-transparent hover:border-white/10 shadow-sm"
                                             >
                                                 <Eye size={16} />
                                             </button>
@@ -230,7 +230,7 @@ export default function AuditLogsPage() {
                     </table>
                 </div>
 
-                <div className="p-8 border-t border-slate-50 flex items-center justify-between bg-slate-50/20">
+                <div className="p-8 border-t border-white/5 flex items-center justify-between bg-white/5/20">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                         {pagination.total > 0 ? `Showing ${(pagination.currentPage - 1) * pagination.limit + 1} - ${Math.min(pagination.currentPage * pagination.limit, pagination.total)} of ${pagination.total} entries` : 'No entries'}
                     </p>
@@ -238,17 +238,17 @@ export default function AuditLogsPage() {
                         <button
                             onClick={() => setPage(prev => Math.max(1, prev - 1))}
                             disabled={page === 1}
-                            className="p-2.5 border border-slate-200 rounded-xl hover:bg-white text-slate-500 disabled:opacity-20 transition-all shadow-sm"
+                            className="p-2.5 border border-white/10 rounded-xl hover:bg-slate-900/40 backdrop-blur-sm text-slate-400 disabled:opacity-20 transition-all shadow-sm"
                         >
                             <ChevronLeft size={18} />
                         </button>
-                        <span className="text-xs font-bold text-slate-900 px-4 py-2 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span className="text-xs font-bold text-white px-4 py-2 bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-xl shadow-sm">
                             Page {pagination.currentPage} of {pagination.pages || 1}
                         </span>
                         <button
                             onClick={() => setPage(prev => Math.min(pagination.pages, prev + 1))}
                             disabled={page >= pagination.pages}
-                            className="p-2.5 border border-slate-200 rounded-xl hover:bg-white text-slate-500 disabled:opacity-20 transition-all shadow-sm"
+                            className="p-2.5 border border-white/10 rounded-xl hover:bg-slate-900/40 backdrop-blur-sm text-slate-400 disabled:opacity-20 transition-all shadow-sm"
                         >
                             <ChevronRight size={18} />
                         </button>
@@ -259,20 +259,20 @@ export default function AuditLogsPage() {
             {/* Details Modal */}
             {showDetails && selectedLog && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-4xl rounded-[3rem] border border-slate-100 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh]">
-                        <div className="p-8 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+                    <div className="bg-slate-900/40 backdrop-blur-sm w-full max-w-4xl rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh]">
+                        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                             <div className="flex items-center gap-4">
                                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-sm ${getActionColor(selectedLog.Action)}`}>
                                     <Activity size={24} />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold text-slate-900">Audit Detail: {selectedLog.Action}</h2>
-                                    <p className="text-sm text-slate-500 mt-0.5">{selectedLog.TableName} Record #{selectedLog.RecordID || 'N/A'}</p>
+                                    <h2 className="text-xl font-bold text-white">Audit Detail: {selectedLog.Action}</h2>
+                                    <p className="text-sm text-slate-400 mt-0.5">{selectedLog.TableName} Record #{selectedLog.RecordID || 'N/A'}</p>
                                 </div>
                             </div>
                             <button
                                 onClick={() => setShowDetails(false)}
-                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:border-slate-100 border border-transparent text-slate-400 hover:text-slate-900 transition-all text-2xl font-light"
+                                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-900/40 backdrop-blur-sm hover:border-white/10 border border-transparent text-slate-400 hover:text-white transition-all text-2xl font-light"
                             >
                                 &times;
                             </button>
@@ -281,17 +281,17 @@ export default function AuditLogsPage() {
                         <div className="flex-1 overflow-y-auto p-8 space-y-8">
                             {/* Metadata */}
                             <div className="grid grid-cols-4 gap-4">
-                                <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
+                                <div className="p-4 bg-white/5 rounded-3xl border border-white/10">
                                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">User</p>
-                                    <p className="text-sm font-bold text-slate-900">{selectedLog.user?.Name || 'System'}</p>
+                                    <p className="text-sm font-bold text-white">{selectedLog.user?.Name || 'System'}</p>
                                 </div>
-                                <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100">
+                                <div className="p-4 bg-white/5 rounded-3xl border border-white/10">
                                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">IP Address</p>
-                                    <p className="text-sm font-bold text-slate-900 font-mono text-xs">{selectedLog.IPAddress}</p>
+                                    <p className="text-sm font-bold text-white font-mono text-xs">{selectedLog.IPAddress}</p>
                                 </div>
-                                <div className="p-4 bg-slate-50 rounded-3xl border border-slate-100 col-span-2">
+                                <div className="p-4 bg-white/5 rounded-3xl border border-white/10 col-span-2">
                                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">User Agent</p>
-                                    <p className="text-sm font-bold text-slate-900 truncate text-xs" title={selectedLog.UserAgent}>{selectedLog.UserAgent}</p>
+                                    <p className="text-sm font-bold text-white truncate text-xs" title={selectedLog.UserAgent}>{selectedLog.UserAgent}</p>
                                 </div>
                             </div>
 
@@ -299,9 +299,9 @@ export default function AuditLogsPage() {
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2">
                                         <Info size={16} className="text-blue-500" />
-                                        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Additional Details</h3>
+                                        <h3 className="text-sm font-bold text-white uppercase tracking-wider">Additional Details</h3>
                                     </div>
-                                    <div className="p-6 bg-blue-50/50 rounded-3xl border border-blue-100 text-sm text-blue-900 leading-relaxed font-medium">
+                                    <div className="p-6 bg-cyan-500/10 rounded-3xl border border-cyan-500/30 text-cyan-100 text-sm text-cyan-300 leading-relaxed font-medium">
                                         {selectedLog.Details}
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@ export default function AuditLogsPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-3">
                                     <h3 className="text-sm font-bold text-rose-500 px-4 flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                                        <div className="w-2 h-2 rounded-full bg-rose-500/200 animate-pulse" />
                                         PREVIOUS STATE
                                     </h3>
                                     <div className="bg-slate-900 rounded-[2rem] p-6 overflow-hidden shadow-inner">
@@ -322,7 +322,7 @@ export default function AuditLogsPage() {
                                 </div>
                                 <div className="space-y-3">
                                     <h3 className="text-sm font-bold text-emerald-500 px-4 flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500/200 animate-pulse" />
                                         NEW STATE
                                     </h3>
                                     <div className="bg-slate-900 rounded-[2rem] p-6 overflow-hidden shadow-inner border border-emerald-500/20">
@@ -334,7 +334,7 @@ export default function AuditLogsPage() {
                             </div>
                         </div>
 
-                        <div className="p-8 border-t border-slate-50 bg-slate-50/30">
+                        <div className="p-8 border-t border-white/5 bg-white/[0.02]">
                             <button
                                 onClick={() => setShowDetails(false)}
                                 className="w-full py-4 rounded-3xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"

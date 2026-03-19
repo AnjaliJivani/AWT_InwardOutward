@@ -12,9 +12,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     }
 
     return (
-        <div className="flex min-h-screen bg-white">
+        <div className="flex min-h-screen bg-transparent text-slate-200">
             <Sidebar />
-            <main className="flex-1 overflow-x-hidden bg-[#fafafa]">
+            <main className="flex-1 overflow-x-hidden bg-transparent">
                 {children}
             </main>
         </div>
