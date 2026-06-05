@@ -24,8 +24,6 @@ public/     → static assets
 scripts/    → helper scripts  
 
 ## Installation
-
-git clone https://github.com/Shivangiba/Inward_Outward.git
 cd Inward_Outward
 npm install
 npm run dev
